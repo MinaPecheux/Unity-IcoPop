@@ -2,6 +2,8 @@
 
 **Mina Pêcheux - March 2022**
 
+![Codemagic build status](https://api.codemagic.io/apps/62139c5f63791700d09082b1/unity-android-workflow/status_badge.svg)
+
 **Unity** is a great game engine that allows you to build apps for lots of platforms: Mac/Windows/Linux, Android, iOS... and even VR headsets! Setting up a VR project can be a bit of a headache, because even if there are ready-made templates, you still have to configure quite a lot.
 
 But you know what's even harder? Actually **building and distributing your VR game**!
