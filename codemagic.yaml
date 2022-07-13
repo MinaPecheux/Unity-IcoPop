@@ -9,10 +9,13 @@ workflows:
         - oculus # <-- (Includes OCULUS_APP_ID, OCULUS_APP_SECRET)
       vars:
         UNITY_BIN: $UNITY_HOME/Contents/MacOS/Unity
-        BUILD_SCRIPT: BuildAndroid
         PACKAGE_NAME: "com.minapecheux.Icopop"
         OCULUS_RELEASE_CHANNEL: ALPHA # must be a test channel, can't be "store" (= Production)
     scripts:
+      - name: Test
+        script: | 
+          echo $UNITY_HOME
+          echo $UNITY_BIN
       - name: Activate Unity License
         script: | 
           $UNITY_BIN -batchmode -quit -logFile -serial ${UNITY_SERIAL?} -username ${UNITY_USERNAME?} -password ${UNITY_PASSWORD?}      
@@ -21,7 +24,7 @@ workflows:
           echo $FCI_KEYSTORE | base64 --decode > $FCI_BUILD_DIR/keystore.keystore
       - name: Build Unity app
         script: | 
-          $UNITY_BIN -batchmode -quit -logFile -projectPath . -executeMethod BuildScript.$BUILD_SCRIPT -nographics -buildTarget Android
+          $UNITY_BIN -batchmode -quit -logFile -projectPath . -executeMethod BuildScript.BuildAndroid -nographics -buildTarget Android
     artifacts:
       - android/*.apk
     publishing:
