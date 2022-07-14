@@ -18,8 +18,9 @@ workflows:
       - name: Set up keystore
         script: | 
           echo $FCI_KEYSTORE | base64 --decode > $FCI_BUILD_DIR/keystore.keystore
-      - name: Build Unity app
+      - name: Set build number + Build Unity app
         script: | 
+          export NEW_BUILD_NUMBER=$BUILD_NUMBER
           $UNITY_BIN -batchmode -quit -logFile -projectPath . -executeMethod BuildScript.BuildAndroid -nographics -buildTarget Android
     artifacts:
       - android/*.apk
